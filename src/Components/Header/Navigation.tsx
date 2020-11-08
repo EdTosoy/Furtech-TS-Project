@@ -4,11 +4,8 @@ import { MenuContext } from "../../ContextApi/menuContext";
 
 import "./Navigation.scss";
 export default function Navigation(): ReactElement {
-  const [dropMenu, setDropMenu] = useContext(MenuContext);
+  const { dropMenu, setDropMenu } = useContext(MenuContext);
   const dropMenuStyle = dropMenu ? { display: "block" } : { display: "none" };
-  const handleClick = () => {
-    setDropMenu((prevValue: Boolean) => !prevValue);
-  };
   return (
     <>
       <ul className="navigation">
@@ -34,7 +31,11 @@ export default function Navigation(): ReactElement {
           </NavLink>
         </li>
       </ul>
-      <div className="drop-down" style={dropMenuStyle} onClick={handleClick}>
+      <div
+        className="drop-down"
+        style={dropMenuStyle}
+        onClick={setDropMenu((prevValue: Boolean) => !prevValue)}
+      >
         <ul className="menu-panel">
           <li>
             <NavLink exact to="/" activeClassName="selected">
