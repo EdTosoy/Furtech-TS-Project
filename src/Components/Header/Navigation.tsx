@@ -7,7 +7,7 @@ export default function Navigation(): ReactElement {
   const [dropMenu, setDropMenu] = useContext(MenuContext);
   const dropMenuStyle = dropMenu ? { display: "block" } : { display: "none" };
   const handleClick = () => {
-    setDropMenu((prevValue) => !prevValue);
+    setDropMenu((prevValue: Boolean) => !prevValue);
   };
   return (
     <>

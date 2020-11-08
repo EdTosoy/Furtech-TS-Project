@@ -1,14 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { ReactElement, useContext } from "react";
 import { MenuContext } from "../../ContextApi/menuContext";
 
 import cartSVG from "./media/cart.svg";
 import personSVG from "./media/person.svg";
 import "./User.scss";
-export default function User() {
-  const [dropMenu, setDropMenu] = useContext(MenuContext);
+
+export default function User(): ReactElement {
+  const { setDropMenu } = useContext(MenuContext);
 
   const handleDrop = () => {
-    setDropMenu((prevValue) => !prevValue);
+    setDropMenu((prevValue: Boolean) => !prevValue);
   };
   return (
     <ul className="user">
@@ -23,9 +24,9 @@ export default function User() {
         </a>
       </li>
       <li className="drop-down-btn" onClick={handleDrop}>
-        <a>
+        <div>
           <ion-icon name="chevron-down-outline"></ion-icon>
-        </a>
+        </div>
       </li>
     </ul>
   );
