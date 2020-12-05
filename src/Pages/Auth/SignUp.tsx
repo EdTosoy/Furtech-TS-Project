@@ -10,8 +10,8 @@ export default function SignUp(): ReactElement {
   const [register, { error }] = useRegisterMutation();
 
   return (
-    <div className="sign-in">
-      <div className="sign-in-content">
+    <div className="sign-up">
+      <div className="sign-up-content">
         <h2>Register Your Account</h2>
         <form
           onSubmit={async (e) => {
@@ -30,6 +30,7 @@ export default function SignUp(): ReactElement {
             }
           }}
         >
+          {error && <div className="error">{error.message}</div>}
           <input
             type="text"
             placeholder="UserName"

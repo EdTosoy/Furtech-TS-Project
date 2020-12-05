@@ -1,0 +1,23 @@
+.shopping-hero {
+  display: grid;
+  place-items: center;
+  background-image: url(./media/ShoppingBg.jpg);
+  background-position: 50%;
+  background-size: cover;
+  height: 600px;
+}
+.shopping-hero-content {
+  width: 570px;
+  padding: 2rem;
+  text-align: center;
+  background-color: hsla(0, 0%, 100%, 0.7);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  font-size: 1.5rem;
+  h1 {
+    font-size: 2em;
+    color: #d23e3e;
+    font-weight: 100;
+    margin-bottom: 1rem;
+  }
+}

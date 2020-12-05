@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import { useLoginMutation } from "../../generated/graphql";
 import { setAccessToken } from "../../accessToken";
@@ -34,6 +34,7 @@ export default function SignIn(): ReactElement {
             }
           }}
         >
+          {error && <div className="error">{error.message}</div>}
           <input
             type="text"
             placeholder="UserName"

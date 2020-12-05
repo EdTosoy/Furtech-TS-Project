@@ -35,7 +35,7 @@
   }
 }
 
-.sign-in-content {
+.sign-in-content, .sign-up-content {
   background-color: white;
   padding: 2rem;
   border-radius: 8px;
@@ -98,5 +98,8 @@
   }
   em {
     cursor: pointer;
+  }
+  .error {
+    color: crimson;
   }
 }
