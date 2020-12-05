@@ -9,23 +9,27 @@ import "./App.css";
 // import Shopping from "./Pages/Shopping/Shopping";
 import About from "./Pages/About/About";
 import { MenuProvider } from "./ContextApi/menuContext";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./index";
 
 function App(): ReactElement {
   return (
-    <MenuProvider>
-      <div className="app">
-        <Router>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            {/* <Route path="/shopping/:category" component={Shopping} /> */}
-            <Route exact path="/auth" component={Auth} />
-            <Route exact path="/about" component={About} />
-          </Switch>
-          <Footer />
-        </Router>
-      </div>
-    </MenuProvider>
+    <ApolloProvider client={client}>
+      <MenuProvider>
+        <div className="app">
+          <Router>
+            <Header />
+            <Switch>
+              <Route exact path="/" component={Home} />
+              {/* <Route path="/shopping/:category" component={Shopping} /> */}
+              <Route exact path="/auth" component={Auth} />
+              <Route exact path="/about" component={About} />
+            </Switch>
+            <Footer />
+          </Router>
+        </div>
+      </MenuProvider>
+    </ApolloProvider>
   );
 }
 
