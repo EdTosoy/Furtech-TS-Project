@@ -1,34 +1,30 @@
 import React, { ReactElement, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-import { useLoginMutation } from "../../generated/graphql";
-import { setAccessToken } from "../../accessToken";
-export default function SignIn(): ReactElement {
+import { useRegisterMutation } from "../../generated/graphql";
+export default function SignUp(): ReactElement {
   let history = useHistory();
   const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [login, { error }] = useLoginMutation();
+  const [register, { error }] = useRegisterMutation();
 
   return (
     <div className="sign-in">
       <div className="sign-in-content">
-        <h2>Login Your Account</h2>
+        <h2>Register Your Account</h2>
         <form
           onSubmit={async (e) => {
+            e.preventDefault();
             try {
-              e.preventDefault();
-              console.log(userName, password);
-              const response = await login({
+              console.log(userName, email, password);
+              const response = await register({
                 variables: {
-                  email: userName,
+                  email,
                   password,
                 },
               });
               console.log(response);
-              if (response && response.data) {
-                setAccessToken(response.data!.login.accessToken);
-              }
-              history.push("/");
             } catch (error) {
               console.log(error);
             }
@@ -40,6 +36,14 @@ export default function SignIn(): ReactElement {
             required={true}
             onChange={(e) => {
               setUserName(e.target.value);
+            }}
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            required={true}
+            onChange={(e) => {
+              setEmail(e.target.value);
             }}
           />
           <input
@@ -56,13 +60,13 @@ export default function SignIn(): ReactElement {
         </form>
         <button className="google-btn">Continue with Google</button>
         <p>
-          have no account?
+          Already have an account?
           <em
             onClick={() => {
-              history.push("/auth/SignUp");
+              history.push("/auth/SignIn");
             }}
           >
-            SIGN UP
+            SIGN IN
           </em>
         </p>
       </div>

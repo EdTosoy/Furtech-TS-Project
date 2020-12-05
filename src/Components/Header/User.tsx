@@ -14,7 +14,7 @@ export default function User(): ReactElement {
   return (
     <ul className="user">
       <li className="cart">
-        <a href="/auth">
+        <a href="/auth/SignIn">
           <img src={cartSVG} alt="cart" />
         </a>
       </li>
