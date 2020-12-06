@@ -7,7 +7,9 @@ import "./Cart.scss";
 export default function Cart(): ReactElement {
   let history = useHistory();
 
-  const { data } = useMeQuery();
+  const { data } = useMeQuery({
+    fetchPolicy: "network-only",
+  });
   if (data && data.me?.email == null) {
     history.push("/user/SignIn");
   }

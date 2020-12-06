@@ -62,14 +62,14 @@ export default function SignUp(): ReactElement {
         </form>
         <button className="google-btn">Continue with Google</button>
         <p>
-          Already have an account?
-          <em
+          Already have an account?{" "}
+          <span
             onClick={() => {
               history.push("/user/SignIn");
             }}
           >
             SIGN IN
-          </em>
+          </span>
         </p>
       </div>
     </div>

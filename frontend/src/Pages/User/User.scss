@@ -96,8 +96,11 @@
     font-size: 0.8em;
     text-align: center;
   }
-  em {
+  span {
     cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
   }
   .error {
     color: crimson;
