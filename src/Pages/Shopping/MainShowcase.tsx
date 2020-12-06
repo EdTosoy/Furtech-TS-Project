@@ -9,10 +9,10 @@ import "./MainShowcase.scss";
 
 export default function MainShowcase(): ReactElement {
   interface DataType {
-    id: number | undefined;
-    name: string | undefined;
-    url: string | undefined;
-    price: string | undefined;
+    id: number;
+    name: string;
+    url: string;
+    price: string;
   }
   interface ParamType {
     category: string;

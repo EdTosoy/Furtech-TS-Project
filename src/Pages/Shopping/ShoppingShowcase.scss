@@ -2,3 +2,10 @@
   background-color: #f0f0f0;
   padding: 4rem 0;
 }
+
+.shopping-showcase-content {
+  grid-column: 2/-2;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 3rem;
+}

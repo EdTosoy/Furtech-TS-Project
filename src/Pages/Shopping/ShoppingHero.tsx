@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 
+import "./ShoppingHero.scss";
 export default function ShoppingHero(): ReactElement {
   return (
     <div className="shopping-hero">

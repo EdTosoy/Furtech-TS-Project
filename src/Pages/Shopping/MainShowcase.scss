@@ -10,9 +10,16 @@
     background-position: top;
     background-size: contain;
     position: relative;
+    border-radius: 4px;
+
+    box-shadow: 0px 3px 10px -2px gray;
 
     &:active {
       border: 2px solid #d23e3e;
+    }
+    &:hover {
+      transform: scale(1.03);
+      box-shadow: 0px 5px 10px 4px gray;
     }
   }
   .text {
@@ -23,6 +30,9 @@
     h1 {
       font-size: 1.2rem;
       font-weight: 100;
+    }
+    p {
+      color: #d23e3e;
     }
   }
 }
