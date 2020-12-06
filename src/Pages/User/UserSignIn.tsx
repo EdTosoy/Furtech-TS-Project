@@ -1,9 +1,9 @@
 import React, { ReactElement } from "react";
 import SignIn from "./SignIn";
 
-import "./Auth.scss";
+import "./User.scss";
 
-export default function AuthSignIn(): ReactElement {
+export default function UserSignIn(): ReactElement {
   return (
     <div className="auth">
       <div className="auth-content">

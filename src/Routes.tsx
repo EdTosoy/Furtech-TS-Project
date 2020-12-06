@@ -9,9 +9,10 @@ import About from "./Pages/About/About";
 import { MenuProvider } from "./ContextApi/menuContext";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./index";
-import AuthSignIn from "./Pages/Auth/AuthSignIn";
-import AuthSignUp from "./Pages/Auth/AuthSignUp";
 import Shopping from "./Pages/Shopping/Shopping";
+import UserSignIn from "./Pages/User/UserSignIn";
+import UserSignUp from "./Pages/User/UserSignUp";
+import Cart from "./Pages/Cart/Cart";
 
 function Routes(): ReactElement {
   return (
@@ -23,8 +24,9 @@ function Routes(): ReactElement {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/shopping/:category" component={Shopping} />
-              <Route exact path="/auth/SignIn" component={AuthSignIn} />
-              <Route exact path="/auth/SignUp" component={AuthSignUp} />
+              <Route exact path="/user/SignIn" component={UserSignIn} />
+              <Route exact path="/user/SignUp" component={UserSignUp} />
+              <Route exact path="/cart" component={Cart} />
               <Route exact path="/about" component={About} />
             </Switch>
             <Footer />

@@ -13,15 +13,17 @@ export default function User(): ReactElement {
   };
   return (
     <ul className="user">
-      <li className="cart">
-        <a href="/auth/SignIn">
+      <li className="cart-btn">
+        <a href="/cart">
           <img src={cartSVG} alt="cart" />
         </a>
       </li>
-      <li className="person">
-        <a href="/auth">
-          <img src={personSVG} alt="person" />
-        </a>
+      <li className="user-btn">
+        {
+          <a href="/user/SignIn">
+            <img src={personSVG} alt="person" />
+          </a>
+        }
       </li>
       <li className="drop-down-btn" onClick={handleDrop}>
         <div>

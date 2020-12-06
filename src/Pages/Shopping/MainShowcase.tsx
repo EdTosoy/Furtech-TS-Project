@@ -32,6 +32,7 @@ export default function MainShowcase(): ReactElement {
       product = 2;
       break;
     default:
+      product = 0;
       break;
   }
 

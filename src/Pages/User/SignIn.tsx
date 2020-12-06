@@ -60,7 +60,7 @@ export default function SignIn(): ReactElement {
           have no account?
           <em
             onClick={() => {
-              history.push("/auth/SignUp");
+              history.push("/user/SignUp");
             }}
           >
             SIGN UP
