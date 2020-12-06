@@ -25,6 +25,7 @@ export default function SignUp(): ReactElement {
                 },
               });
               console.log(response);
+              history.push("/user/SignIn");
             } catch (error) {
               console.log(error);
             }

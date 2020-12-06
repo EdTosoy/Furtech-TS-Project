@@ -1,8 +1,17 @@
 import React, { ReactElement } from "react";
+import { useHistory } from "react-router-dom";
+import { useMeQuery } from "../../generated/graphql";
 
 import "./Cart.scss";
 
 export default function Cart(): ReactElement {
+  let history = useHistory();
+
+  const { data } = useMeQuery();
+  if (data && data.me?.email == null) {
+    history.push("/user/SignIn");
+  }
+
   return (
     <div className="cart">
       <div className="cart-content">

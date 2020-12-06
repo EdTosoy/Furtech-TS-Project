@@ -29,6 +29,7 @@ export default function SignIn(): ReactElement {
                 setAccessToken(response.data!.login.accessToken);
               }
               history.push("/");
+              window.location.reload();
             } catch (error) {
               console.log(error);
             }
