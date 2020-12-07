@@ -1,9 +1,7 @@
 import React, { ReactElement } from "react";
 import { useCartListQuery } from "../../generated/graphql";
 
-interface Props {}
-
-export default function CartSummary({}: Props): ReactElement {
+export default function CartSummary(): ReactElement {
   const { data } = useCartListQuery();
 
   let cartTotal: number | undefined = 0;
