@@ -25,7 +25,7 @@ export default function User(): ReactElement {
     await logout();
     setAccessToken("");
     await client.resetStore();
-    history.push("/");
+    history.push("/user/SignIn");
     window.location.reload();
   };
 
@@ -42,7 +42,7 @@ export default function User(): ReactElement {
             <img src={personSVG} alt="person" />
           </a>
         ) : (
-          <a href="/" onClick={handleLogout}>
+          <a href="/user/SignIn" onClick={handleLogout}>
             <img src={logoutSVG} alt="logout" />
           </a>
         )}
