@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import { useMeQuery } from "../../generated/graphql";
 
 import "./Cart.scss";
+import CartList from "./CartList";
+import CartSummary from "./CartSummary";
 
 export default function Cart(): ReactElement {
   let history = useHistory();
@@ -20,23 +22,11 @@ export default function Cart(): ReactElement {
         <div className="cart-wrapper">
           <div className="cart-list">
             <h1>Cart Items</h1>
-            <div className="list-wrapper">
-              <div className="item-wrapper">
-                <p className="item-name">Luis Dark Gray</p>
-                <p className="quantity">Quantity: 4</p>
-                <p className="item-price">$190</p>
-              </div>
-            </div>
+            <CartList />
           </div>
           <div className="cart-total">
             <h1>Cart Summary</h1>
-            <p>
-              Total Number of Items: <span>13</span>
-            </p>
-            <p>
-              Total Cause: <span>$12442</span>
-            </p>
-            <button>Procede</button>
+            <CartSummary />
           </div>
         </div>
       </div>

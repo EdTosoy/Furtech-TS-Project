@@ -27,7 +27,10 @@ export class CartList extends BaseEntity {
   @Field({ nullable: true })
   @Column({ nullable: true })
   price: string;
-  @ManyToOne(() => User, (user) => user.cartList)
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  username: string;
+  @ManyToOne(() => User, (user: User) => user.cartList)
   @JoinColumn({ name: "user_id" })
   user: User;
 }

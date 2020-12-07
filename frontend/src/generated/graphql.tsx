@@ -13,6 +13,15 @@ export type Scalars = {
   Float: number;
 };
 
+export type CartList = {
+  __typename?: 'CartList';
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
+};
+
 export type User = {
   __typename?: 'User';
   id?: Maybe<Scalars['Int']>;
@@ -29,16 +38,25 @@ export type LoginResponse = {
 export type Query = {
   __typename?: 'Query';
   bye: Scalars['String'];
-  me?: Maybe<User>;
+  cartList?: Maybe<Array<CartList>>;
   hello: Scalars['String'];
+  me?: Maybe<User>;
   users: Array<User>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addToCart: Scalars['Boolean'];
   login: LoginResponse;
   logout: Scalars['Boolean'];
   register: Scalars['Boolean'];
+};
+
+
+export type MutationAddToCartArgs = {
+  username: Scalars['String'];
+  price: Scalars['String'];
+  name: Scalars['String'];
 };
 
 
@@ -53,12 +71,35 @@ export type MutationRegisterArgs = {
   username: Scalars['String'];
 };
 
+export type AddToCartMutationVariables = Exact<{
+  username: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['String'];
+}>;
+
+
+export type AddToCartMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addToCart'>
+);
+
 export type ByeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ByeQuery = (
   { __typename?: 'Query' }
   & Pick<Query, 'bye'>
+);
+
+export type CartListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CartListQuery = (
+  { __typename?: 'Query' }
+  & { cartList?: Maybe<Array<(
+    { __typename?: 'CartList' }
+    & Pick<CartList, 'id' | 'name' | 'price' | 'username'>
+  )>> }
 );
 
 export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
@@ -125,6 +166,38 @@ export type UserQuery = (
 );
 
 
+export const AddToCartDocument = gql`
+    mutation AddToCart($username: String!, $name: String!, $price: String!) {
+  addToCart(username: $username, price: $price, name: $name)
+}
+    `;
+export type AddToCartMutationFn = Apollo.MutationFunction<AddToCartMutation, AddToCartMutationVariables>;
+
+/**
+ * __useAddToCartMutation__
+ *
+ * To run a mutation, you first call `useAddToCartMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddToCartMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addToCartMutation, { data, loading, error }] = useAddToCartMutation({
+ *   variables: {
+ *      username: // value for 'username'
+ *      name: // value for 'name'
+ *      price: // value for 'price'
+ *   },
+ * });
+ */
+export function useAddToCartMutation(baseOptions?: Apollo.MutationHookOptions<AddToCartMutation, AddToCartMutationVariables>) {
+        return Apollo.useMutation<AddToCartMutation, AddToCartMutationVariables>(AddToCartDocument, baseOptions);
+      }
+export type AddToCartMutationHookResult = ReturnType<typeof useAddToCartMutation>;
+export type AddToCartMutationResult = Apollo.MutationResult<AddToCartMutation>;
+export type AddToCartMutationOptions = Apollo.BaseMutationOptions<AddToCartMutation, AddToCartMutationVariables>;
 export const ByeDocument = gql`
     query Bye {
   bye
@@ -155,6 +228,41 @@ export function useByeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ByeQue
 export type ByeQueryHookResult = ReturnType<typeof useByeQuery>;
 export type ByeLazyQueryHookResult = ReturnType<typeof useByeLazyQuery>;
 export type ByeQueryResult = Apollo.QueryResult<ByeQuery, ByeQueryVariables>;
+export const CartListDocument = gql`
+    query CartList {
+  cartList {
+    id
+    name
+    price
+    username
+  }
+}
+    `;
+
+/**
+ * __useCartListQuery__
+ *
+ * To run a query within a React component, call `useCartListQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCartListQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCartListQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCartListQuery(baseOptions?: Apollo.QueryHookOptions<CartListQuery, CartListQueryVariables>) {
+        return Apollo.useQuery<CartListQuery, CartListQueryVariables>(CartListDocument, baseOptions);
+      }
+export function useCartListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CartListQuery, CartListQueryVariables>) {
+          return Apollo.useLazyQuery<CartListQuery, CartListQueryVariables>(CartListDocument, baseOptions);
+        }
+export type CartListQueryHookResult = ReturnType<typeof useCartListQuery>;
+export type CartListLazyQueryHookResult = ReturnType<typeof useCartListLazyQuery>;
+export type CartListQueryResult = Apollo.QueryResult<CartListQuery, CartListQueryVariables>;
 export const HelloDocument = gql`
     query Hello {
   hello
