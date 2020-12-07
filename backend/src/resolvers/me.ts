@@ -11,6 +11,7 @@ export class Me {
 
     if (!authorization) {
       return null;
+      
     }
 
     try {

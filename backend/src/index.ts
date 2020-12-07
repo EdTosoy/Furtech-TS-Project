@@ -51,6 +51,7 @@ import cors from "cors";
 
     return res.send({ ok: true, accessToken: createAccessToken(user) });
   });
+
   await createConnection();
 
   const apolloServer = new ApolloServer({

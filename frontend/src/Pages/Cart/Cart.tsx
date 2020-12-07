@@ -10,7 +10,7 @@ export default function Cart(): ReactElement {
   const { data } = useMeQuery({
     fetchPolicy: "network-only",
   });
-  if (data && data.me?.email == null) {
+  if (data && data.me?.username == null) {
     history.push("/user/SignIn");
   }
 

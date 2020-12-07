@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "samsunga316",
-  "database": "flash-card-project",
+  "database": "furtech-ts-project",
   "synchronize": true,
   "logging": true,
   "entities": ["src/entity/**/*.ts"],

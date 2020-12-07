@@ -1,32 +1,23 @@
 import { hash } from "bcryptjs";
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Resolver } from "type-graphql";
 import { User } from "../entity/User";
 
 @Resolver()
 export class Register {
-  @Query(() => String)
-  hello() {
-    return "hi";
-  }
-
-  @Query(() => [User])
-  async users() {
-    const users = await User.find();
-    return users;
-  }
   @Mutation(() => Boolean)
   async register(
-    @Arg("email") email: string,
+    @Arg("username") username: string,
     @Arg("password") password: string
   ) {
     const hashedPassword = await hash(password, 12);
-    const userExist = await User.findOne({ where: { email: email } });
+    const userExist = await User.findOne({ where: { username: username } });
     if (userExist) {
       throw new Error("User already exist");
     }
     try {
+      await User;
       await User.insert({
-        email,
+        username,
         password: hashedPassword,
       });
     } catch (error) {

@@ -37,7 +37,7 @@ export default function User(): ReactElement {
         </a>
       </li>
       <li className="user-btn">
-        {!data?.me?.email ? (
+        {!data?.me?.username ? (
           <a href="/user/SignIn">
             <img src={personSVG} alt="person" />
           </a>

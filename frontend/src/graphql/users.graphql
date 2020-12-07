@@ -1,7 +1,7 @@
 query User {
   users {
     id
-    email
+    username
     password
   }
 }

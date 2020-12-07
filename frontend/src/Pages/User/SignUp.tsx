@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useRegisterMutation } from "../../generated/graphql";
 export default function SignUp(): ReactElement {
   let history = useHistory();
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [register, { error }] = useRegisterMutation();
@@ -17,10 +17,10 @@ export default function SignUp(): ReactElement {
           onSubmit={async (e) => {
             e.preventDefault();
             try {
-              console.log(userName, email, password);
+              console.log(username, email, password);
               const response = await register({
                 variables: {
-                  email,
+                  username,
                   password,
                 },
               });
@@ -37,7 +37,7 @@ export default function SignUp(): ReactElement {
             placeholder="UserName"
             required={true}
             onChange={(e) => {
-              setUserName(e.target.value);
+              setUsername(e.target.value);
             }}
           />
           <input

@@ -5,7 +5,7 @@ import { useLoginMutation } from "../../generated/graphql";
 import { setAccessToken } from "../../accessToken";
 export default function SignIn(): ReactElement {
   let history = useHistory();
-  const [userName, setUserName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [login, { error }] = useLoginMutation();
 
@@ -17,10 +17,10 @@ export default function SignIn(): ReactElement {
           onSubmit={async (e) => {
             try {
               e.preventDefault();
-              console.log(userName, password);
+              console.log(username, password);
               const response = await login({
                 variables: {
-                  email: userName,
+                  username,
                   password,
                 },
               });
@@ -41,7 +41,7 @@ export default function SignIn(): ReactElement {
             placeholder="UserName"
             required={true}
             onChange={(e) => {
-              setUserName(e.target.value);
+              setUsername(e.target.value);
             }}
           />
           <input
