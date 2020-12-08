@@ -6,12 +6,12 @@ import { MyContext } from "../MyContext";
 
 @Resolver()
 export class Cartlist {
-  @Query(() => [CartList])
-  async cartList(@Ctx() context: MyContext): Promise<CartList[]> {
+  @Query(() => [CartList], { nullable: true })
+  async cartList(@Ctx() context: MyContext): Promise<CartList[] | null> {
     const authorization = context.req.headers["authorization"];
 
     if (!authorization) {
-      return [];
+      return null;
     }
 
     try {
@@ -24,7 +24,7 @@ export class Cartlist {
       return cartlist;
     } catch (error) {
       console.log(error);
-      return [];
+      return null;
     }
   }
 }

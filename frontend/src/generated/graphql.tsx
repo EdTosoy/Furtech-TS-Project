@@ -38,7 +38,7 @@ export type LoginResponse = {
 export type Query = {
   __typename?: 'Query';
   bye: Scalars['String'];
-  cartList: Array<CartList>;
+  cartList?: Maybe<Array<CartList>>;
   hello: Scalars['String'];
   me?: Maybe<User>;
   users: Array<User>;
@@ -103,10 +103,10 @@ export type CartListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CartListQuery = (
   { __typename?: 'Query' }
-  & { cartList: Array<(
+  & { cartList?: Maybe<Array<(
     { __typename?: 'CartList' }
     & Pick<CartList, 'id' | 'name' | 'price' | 'username'>
-  )> }
+  )>> }
 );
 
 export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
@@ -163,7 +163,7 @@ export type RegisterMutation = (
 
 export type RemoveFromCartMutationVariables = Exact<{
   username: Scalars['String'];
-  id: Scalars['Int'];
+  id: Scalars['Float'];
 }>;
 
 
@@ -439,8 +439,8 @@ export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
 export const RemoveFromCartDocument = gql`
-    mutation RemoveFromCart($username: String!, $id: Int!) {
-  removeFromCart(username: "cjay", id: 5)
+    mutation RemoveFromCart($username: String!, $id: Float!) {
+  removeFromCart(username: $username, id: $id)
 }
     `;
 export type RemoveFromCartMutationFn = Apollo.MutationFunction<RemoveFromCartMutation, RemoveFromCartMutationVariables>;
