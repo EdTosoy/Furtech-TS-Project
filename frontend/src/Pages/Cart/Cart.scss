@@ -57,9 +57,21 @@
       }
     }
   }
+  .list-wrapper {
+    max-height: 300px;
+    overflow-y: scroll;
+    scrollbar-color: #a4becd #f0f0f0;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #a4becd;
+      border-radius: 10px;
+    }
+  }
   .item-wrapper {
-    max-height: 200;
-    scroll-behavior: smooth;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     .item-price {

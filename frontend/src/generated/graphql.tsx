@@ -38,7 +38,7 @@ export type LoginResponse = {
 export type Query = {
   __typename?: 'Query';
   bye: Scalars['String'];
-  cartList?: Maybe<Array<CartList>>;
+  cartList: Array<CartList>;
   hello: Scalars['String'];
   me?: Maybe<User>;
   users: Array<User>;
@@ -50,6 +50,7 @@ export type Mutation = {
   login: LoginResponse;
   logout: Scalars['Boolean'];
   register: Scalars['Boolean'];
+  removeFromCart: Scalars['Boolean'];
 };
 
 
@@ -69,6 +70,12 @@ export type MutationLoginArgs = {
 export type MutationRegisterArgs = {
   password: Scalars['String'];
   username: Scalars['String'];
+};
+
+
+export type MutationRemoveFromCartArgs = {
+  username: Scalars['String'];
+  id: Scalars['Float'];
 };
 
 export type AddToCartMutationVariables = Exact<{
@@ -96,10 +103,10 @@ export type CartListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type CartListQuery = (
   { __typename?: 'Query' }
-  & { cartList?: Maybe<Array<(
+  & { cartList: Array<(
     { __typename?: 'CartList' }
     & Pick<CartList, 'id' | 'name' | 'price' | 'username'>
-  )>> }
+  )> }
 );
 
 export type HelloQueryVariables = Exact<{ [key: string]: never; }>;
@@ -152,6 +159,17 @@ export type RegisterMutationVariables = Exact<{
 export type RegisterMutation = (
   { __typename?: 'Mutation' }
   & Pick<Mutation, 'register'>
+);
+
+export type RemoveFromCartMutationVariables = Exact<{
+  username: Scalars['String'];
+  id: Scalars['Int'];
+}>;
+
+
+export type RemoveFromCartMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'removeFromCart'>
 );
 
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
@@ -420,6 +438,37 @@ export function useRegisterMutation(baseOptions?: Apollo.MutationHookOptions<Reg
 export type RegisterMutationHookResult = ReturnType<typeof useRegisterMutation>;
 export type RegisterMutationResult = Apollo.MutationResult<RegisterMutation>;
 export type RegisterMutationOptions = Apollo.BaseMutationOptions<RegisterMutation, RegisterMutationVariables>;
+export const RemoveFromCartDocument = gql`
+    mutation RemoveFromCart($username: String!, $id: Int!) {
+  removeFromCart(username: "cjay", id: 5)
+}
+    `;
+export type RemoveFromCartMutationFn = Apollo.MutationFunction<RemoveFromCartMutation, RemoveFromCartMutationVariables>;
+
+/**
+ * __useRemoveFromCartMutation__
+ *
+ * To run a mutation, you first call `useRemoveFromCartMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveFromCartMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeFromCartMutation, { data, loading, error }] = useRemoveFromCartMutation({
+ *   variables: {
+ *      username: // value for 'username'
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useRemoveFromCartMutation(baseOptions?: Apollo.MutationHookOptions<RemoveFromCartMutation, RemoveFromCartMutationVariables>) {
+        return Apollo.useMutation<RemoveFromCartMutation, RemoveFromCartMutationVariables>(RemoveFromCartDocument, baseOptions);
+      }
+export type RemoveFromCartMutationHookResult = ReturnType<typeof useRemoveFromCartMutation>;
+export type RemoveFromCartMutationResult = Apollo.MutationResult<RemoveFromCartMutation>;
+export type RemoveFromCartMutationOptions = Apollo.BaseMutationOptions<RemoveFromCartMutation, RemoveFromCartMutationVariables>;
 export const UserDocument = gql`
     query User {
   users {
