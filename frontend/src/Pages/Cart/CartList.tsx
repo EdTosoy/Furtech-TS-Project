@@ -20,8 +20,9 @@ export default function CartList(): ReactElement {
         <div className="item-wrapper" key={id}>
           <p className="item-name">{name}</p>
           <p className="item-price">${price}</p>
-          <p
-            onClick={async (e) => {
+          <div
+            className="remove"
+            onClick={async () => {
               try {
                 await removeFromCart({
                   variables: {
@@ -38,7 +39,7 @@ export default function CartList(): ReactElement {
             }}
           >
             <ion-icon name="bag-remove-outline"></ion-icon>
-          </p>
+          </div>
         </div>
       ))}
     </div>

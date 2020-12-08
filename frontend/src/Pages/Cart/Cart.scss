@@ -58,6 +58,7 @@
     }
   }
   .list-wrapper {
+    padding-top: 2px;
     max-height: 300px;
     overflow-y: scroll;
     scrollbar-color: #a4becd #f0f0f0;
@@ -84,5 +85,20 @@
     border: 0.5px dashed #d23e3e;
     padding: 1.5rem;
     margin: 2rem 1rem;
+  }
+  .remove {
+    width: 50%;
+    margin: 0 auto;
+    ion-icon {
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #d23e3e;
+
+      padding: 4px;
+      border-radius: 4px;
+      &:hover {
+        box-shadow: 0 1px 3px 1px gray;
+      }
+    }
   }
 }
