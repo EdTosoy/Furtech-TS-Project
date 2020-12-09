@@ -4,11 +4,9 @@ import {
   useRemoveFromCartMutation,
 } from "../../generated/graphql";
 
-import deleteSVG from "./media/delete.svg";
-
 export default function CartList(): ReactElement {
   const { data } = useCartListQuery();
-  const [removeFromCart, {}] = useRemoveFromCartMutation();
+  const [removeFromCart] = useRemoveFromCartMutation();
 
   if (data?.cartList?.length === 0) {
     return <div className="empty-cart">Your Cart is Empty</div>;
