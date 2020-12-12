@@ -2,7 +2,7 @@
   "name": "Furtech-TS-Backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/EdTosoy/Furtech-TS-Backend.git",
+  "repository": "https://github.com/EdTosoy/Furtech-TS-Project.git",
   "author": "Ed Tosoy <edberto.tosoy@gmail.com>",
   "license": "MIT",
   "dependencies": {
