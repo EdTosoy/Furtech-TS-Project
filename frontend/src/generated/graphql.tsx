@@ -18,7 +18,7 @@ export type CartList = {
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
-  price?: Maybe<Scalars['String']>;
+  price?: Maybe<Scalars['Float']>;
   username?: Maybe<Scalars['String']>;
 };
 
@@ -56,7 +56,7 @@ export type Mutation = {
 
 export type MutationAddToCartArgs = {
   username: Scalars['String'];
-  price: Scalars['String'];
+  price: Scalars['Float'];
   name: Scalars['String'];
 };
 
@@ -81,7 +81,7 @@ export type MutationRemoveFromCartArgs = {
 export type AddToCartMutationVariables = Exact<{
   username: Scalars['String'];
   name: Scalars['String'];
-  price: Scalars['String'];
+  price: Scalars['Float'];
 }>;
 
 
@@ -185,7 +185,7 @@ export type UserQuery = (
 
 
 export const AddToCartDocument = gql`
-    mutation AddToCart($username: String!, $name: String!, $price: String!) {
+    mutation AddToCart($username: String!, $name: String!, $price: Float!) {
   addToCart(username: $username, price: $price, name: $name)
 }
     `;

@@ -13,7 +13,7 @@ export default function MainShowcase(): ReactElement {
     id: number;
     name: string;
     url: string;
-    price: string;
+    price: number;
   }
   interface ParamType {
     category: string;

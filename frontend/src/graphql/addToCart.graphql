@@ -1,7 +1,7 @@
 mutation AddToCart(
   $username: String!
   $name: String!
-  $price: String!
+  $price: Float!
 ) {
   addToCart(username: $username, price: $price, name: $name)
 }

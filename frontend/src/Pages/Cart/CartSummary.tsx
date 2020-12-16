@@ -11,7 +11,7 @@ export default function CartSummary(): ReactElement {
     cartItems = 0;
   } else {
     data?.cartList!.forEach(({ price }) => {
-      cartTotal! += parseInt(price!);
+      cartTotal! += price!;
     });
   }
 
