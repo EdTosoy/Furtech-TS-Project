@@ -1,70 +1,46 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { StripeCardElementOptions } from "@stripe/stripe-js";
 import React, { ReactElement, useState } from "react";
-import { useChargeMutation } from "../../generated/graphql";
+import { useCartListQuery, useChargeMutation } from "../../generated/graphql";
+import CheckOutDetails from "./CheckOutDetails";
 interface Props {}
 
 export default function CheckOutForm({}: Props): ReactElement {
   const [onProcess, setOnProcess] = useState(false);
-  const CHECKOUT_ENTITIES = [
-    {
-      name: "Name",
-      type: "text",
-    },
-    {
-      name: "Email",
-      type: "email",
-    },
-    {
-      name: "Address",
-      type: "text",
-    },
-    {
-      name: "City",
-      type: "text",
-    },
-    {
-      name: "State",
-      type: "text",
-    },
-    {
-      name: "Zip",
-      type: "number",
-    },
-  ];
   const stripe = useStripe();
   const elements = useElements();
   const [charge] = useChargeMutation();
-  const handleSubmit = async (
-    //@ts-ignore
-    event: MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    event.preventDefault();
-    setOnProcess(true);
+  const { data } = useCartListQuery();
 
+  let cartTotal: number | undefined = 0;
+  let cartItems: number | undefined = 0;
+  if (data?.cartList?.length === 0) {
+    cartTotal = 0;
+    cartItems = 0;
+  } else {
+    data?.cartList!.forEach(({ price }) => {
+      cartTotal! += price!;
+    });
+  }
+
+  cartItems = data?.cartList?.length;
+  const handleSubmit = async (e: MouseEvent) => {
+    e.preventDefault();
+    setOnProcess(true);
     if (stripe && elements) {
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement("card")!,
       });
+      if (error) console.error(error);
       if (paymentMethod?.id) {
         setOnProcess(false);
-      }
-      // const confirmedCardPayment = await stripe.confirmCardPayment(
-      //   process.env.SECRET_KEY!,
-      //   {
-      //     payment_method: paymentMethod?.id,
-      //   }
-      // );
-      // console.log(confirmedCardPayment);
-      if (!error) {
-        //@ts-ignore
         const { id } = paymentMethod;
-
         try {
           await charge({
             variables: {
               id,
-              amount: 1099,
+              amount: cartTotal! * 100,
             },
           });
         } catch (error) {
@@ -74,7 +50,7 @@ export default function CheckOutForm({}: Props): ReactElement {
     }
   };
 
-  const cardElementOptions = {
+  const cardElementOptions: StripeCardElementOptions = {
     style: {
       base: {
         fontSize: "16px",
@@ -83,29 +59,30 @@ export default function CheckOutForm({}: Props): ReactElement {
           color: "#696969",
         },
       },
-      invalid: {},
+      invalid: {
+        color: "#DC143C",
+      },
+      complete: {
+        iconColor: "#0000A0",
+      },
     },
+    hidePostalCode: true,
   };
 
   return (
     <form className="check-out-wrapper">
-      <div className="form-left">
-        {CHECKOUT_ENTITIES.map(({ name, type }) => (
-          <div className="row" key={name}>
-            <label htmlFor={name}>{name}</label>
-            <input type={type} name={name} id={name} />
-          </div>
-        ))}
-      </div>
+      <CheckOutDetails />
       <div className="form-right">
         <p>
-          Total number of Items: <span>15</span>
+          Total number of Items: <span>{cartItems}</span>
         </p>
         <p>
-          Total: <span>$6565</span>
+          Total: <span>${cartTotal}</span>
         </p>
         <CardElement options={cardElementOptions} />
 
+        {/*
+          //@ts-ignore*/}
         <button type="submit" disabled={onProcess} onClick={handleSubmit}>
           {onProcess ? "Processing..." : "Pay"}
         </button>
