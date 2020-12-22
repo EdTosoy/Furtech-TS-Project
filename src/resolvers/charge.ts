@@ -12,7 +12,7 @@ export class Charge {
       const payment = await stripe.paymentIntents.create({
         amount,
         currency: "USD",
-        description: "Delicious empanadas",
+        description: "Furtech Orders ",
         payment_method: id,
       });
 

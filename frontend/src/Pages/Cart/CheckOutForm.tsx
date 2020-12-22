@@ -80,7 +80,7 @@ export default function CheckOutForm(): ReactElement {
           Total number of Items: <span>{cartItems}</span>
         </p>
         <p>
-          Total: <span>${cartTotal}</span>
+          Total Payment: <span>${cartTotal}</span>
         </p>
         <CardElement options={cardElementOptions} />
 
