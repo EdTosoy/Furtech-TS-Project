@@ -3,14 +3,15 @@ import { StripeCardElementOptions } from "@stripe/stripe-js";
 import React, { ReactElement, useState } from "react";
 import { useCartListQuery, useChargeMutation } from "../../generated/graphql";
 import CheckOutDetails from "./CheckOutDetails";
-interface Props {}
+import { useHistory } from "react-router-dom";
 
-export default function CheckOutForm({}: Props): ReactElement {
+export default function CheckOutForm(): ReactElement {
   const [onProcess, setOnProcess] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const [charge] = useChargeMutation();
   const { data } = useCartListQuery();
+  let history = useHistory();
 
   let cartTotal: number | undefined = 0;
   let cartItems: number | undefined = 0;
@@ -43,6 +44,8 @@ export default function CheckOutForm({}: Props): ReactElement {
               amount: cartTotal! * 100,
             },
           });
+          history.push("/");
+          window.location.reload();
         } catch (error) {
           console.error(error);
         }

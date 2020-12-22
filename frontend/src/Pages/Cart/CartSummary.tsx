@@ -1,8 +1,10 @@
 import React, { ReactElement } from "react";
 import { useCartListQuery } from "../../generated/graphql";
+import { useHistory } from "react-router-dom";
 
 export default function CartSummary(): ReactElement {
   const { data } = useCartListQuery();
+  let history = useHistory();
 
   let cartTotal: number | undefined = 0;
   let cartItems: number | undefined = 0;
@@ -25,7 +27,13 @@ export default function CartSummary(): ReactElement {
       <p>
         Total Cause: <span>${cartTotal}</span>
       </p>
-      <button>Proceed</button>
+      <button
+        onClick={() => {
+          history.push("/checkout");
+        }}
+      >
+        Proceed
+      </button>
     </>
   );
 }
