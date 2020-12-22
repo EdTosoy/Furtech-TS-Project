@@ -1,8 +1,8 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 
 import { loadStripe } from "@stripe/stripe-js";
 
-import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
 import "./CheckOut.scss";
 import CheckOutForm from "./CheckOutForm";
