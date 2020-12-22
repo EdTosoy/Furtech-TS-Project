@@ -25,7 +25,7 @@ export default function CartSummary(): ReactElement {
       <p>
         Total Cause: <span>${cartTotal}</span>
       </p>
-      <button>Procede</button>
+      <button>Proceed</button>
     </>
   );
 }

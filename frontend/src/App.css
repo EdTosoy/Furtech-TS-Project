@@ -8,7 +8,8 @@ footer,
 .auth,
 .shopping-showcase,
 .about,
-.cart {
+.cart,
+.check-out {
   display: grid;
   grid-template-columns:
     minmax(1rem, 1fr)
@@ -29,4 +30,8 @@ footer,
 }
 [data-scroll="out"] {
   opacity: 0;
+}
+
+body {
+  overflow-x: hidden;
 }

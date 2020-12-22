@@ -13,6 +13,7 @@ import Shopping from "./Pages/Shopping/Shopping";
 import UserSignIn from "./Pages/User/UserSignIn";
 import UserSignUp from "./Pages/User/UserSignUp";
 import Cart from "./Pages/Cart/Cart";
+import CheckOut from './Pages/Cart/CheckOut';
 
 function Routes(): ReactElement {
   return (
@@ -27,6 +28,7 @@ function Routes(): ReactElement {
               <Route exact path="/user/SignIn" component={UserSignIn} />
               <Route exact path="/user/SignUp" component={UserSignUp} />
               <Route exact path="/cart" component={Cart} />
+              <Route exact path="/checkout" component={CheckOut} />
               <Route exact path="/about" component={About} />
             </Switch>
             <Footer />

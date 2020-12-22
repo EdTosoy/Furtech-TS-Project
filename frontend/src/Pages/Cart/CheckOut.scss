@@ -1,0 +1,64 @@
+.check-out {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("./media/authbg.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 600px;
+}
+.check-out-content {
+  grid-column: 2/-2;
+}
+.check-out-wrapper {
+  margin: 4em 0;
+  padding: 2em;
+  border-radius: 8px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  gap: 3rem;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.form-left,
+.form-right {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 2em;
+  .row,
+  p {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    font-size: 1.2em;
+    gap: 1rem;
+    span {
+      color: #d23e3e;
+    }
+  }
+  input {
+    font-size: 1em;
+    color: #d23e3e;
+    width: 80%;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid white;
+    &:focus {
+      border-bottom: 2px solid dimgray;
+    }
+  }
+  button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #a4becd;
+    font-size: 1rem;
+
+    &:hover {
+      background-color: darken(#a4becd, 10);
+    }
+    &:active {
+      background-color: darken(#a4becd, 30);
+    }
+  }
+}

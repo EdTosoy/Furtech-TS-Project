@@ -1,0 +1,3 @@
+mutation Charge($amount: Float!, $id: String!) {
+  charge(amount: 4, id: "4")
+}
