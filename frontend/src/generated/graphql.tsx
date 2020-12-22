@@ -301,7 +301,7 @@ export type CartListLazyQueryHookResult = ReturnType<typeof useCartListLazyQuery
 export type CartListQueryResult = Apollo.QueryResult<CartListQuery, CartListQueryVariables>;
 export const ChargeDocument = gql`
     mutation Charge($amount: Float!, $id: String!) {
-  charge(amount: 4, id: "4")
+  charge(amount: $amount, id: $id)
 }
     `;
 export type ChargeMutationFn = Apollo.MutationFunction<ChargeMutation, ChargeMutationVariables>;

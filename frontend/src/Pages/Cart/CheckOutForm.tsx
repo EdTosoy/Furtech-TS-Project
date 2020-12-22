@@ -31,7 +31,6 @@ export default function CheckOutForm({}: Props): ReactElement {
       type: "number",
     },
   ];
-
   const stripe = useStripe();
   const elements = useElements();
   const [charge] = useChargeMutation();
@@ -40,29 +39,52 @@ export default function CheckOutForm({}: Props): ReactElement {
     event: MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
+    setOnProcess(true);
 
     if (stripe && elements) {
       const { error, paymentMethod } = await stripe.createPaymentMethod({
         type: "card",
         card: elements.getElement("card")!,
       });
+      if (paymentMethod?.id) {
+        setOnProcess(false);
+      }
+      // const confirmedCardPayment = await stripe.confirmCardPayment(
+      //   process.env.SECRET_KEY!,
+      //   {
+      //     payment_method: paymentMethod?.id,
+      //   }
+      // );
+      // console.log(confirmedCardPayment);
       if (!error) {
         //@ts-ignore
         const { id } = paymentMethod;
 
         try {
-          const { data } = await charge({
+          await charge({
             variables: {
               id,
               amount: 1099,
             },
           });
-          console.log(data);
         } catch (error) {
           console.error(error);
         }
       }
     }
+  };
+
+  const cardElementOptions = {
+    style: {
+      base: {
+        fontSize: "16px",
+        color: "#d23e3e",
+        "::placeholder": {
+          color: "#696969",
+        },
+      },
+      invalid: {},
+    },
   };
 
   return (
@@ -82,10 +104,10 @@ export default function CheckOutForm({}: Props): ReactElement {
         <p>
           Total: <span>$6565</span>
         </p>
-        <CardElement />
+        <CardElement options={cardElementOptions} />
 
         <button type="submit" disabled={onProcess} onClick={handleSubmit}>
-          Pay
+          {onProcess ? "Processing..." : "Pay"}
         </button>
       </div>
     </form>

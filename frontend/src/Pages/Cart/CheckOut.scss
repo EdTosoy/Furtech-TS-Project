@@ -29,7 +29,7 @@
   p {
     display: flex;
     justify-content: space-between;
-    padding: 0.5rem;
+    margin-bottom: 1em;
     font-size: 1.2em;
     gap: 1rem;
     span {
@@ -53,6 +53,7 @@
     border-radius: 4px;
     background-color: #a4becd;
     font-size: 1rem;
+    margin-top: 1.5rem;
 
     &:hover {
       background-color: darken(#a4becd, 10);
