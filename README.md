@@ -30,11 +30,15 @@ Good Looking Minimalist Furniture E-commerce website, for Furtech Furniture, Inc
 
    ```sh
    npm install
+   cd frontend 
+   npm install
    ```
 
    > or
 
    ```sh
+   yarn install
+   cd frontend
    yarn install
    ```
 
@@ -42,11 +46,15 @@ Good Looking Minimalist Furniture E-commerce website, for Furtech Furniture, Inc
 
    ```sh
    npm start
+   cd frontend
+   npm start
    ```
 
    > or
 
    ```sh
+   yarn start
+   cd frontend
    yarn start
    ```
 
